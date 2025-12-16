@@ -22,7 +22,9 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
-            var libraryContext = _context.Book.Include(b => b.Genre);
+            var libraryContext = _context.Book
+                .Include(b => b.Genre)
+                .Include(b => b.Author);
             return View(await libraryContext.ToListAsync());
         }
 
