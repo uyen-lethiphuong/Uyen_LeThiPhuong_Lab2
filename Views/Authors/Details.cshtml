@@ -22,6 +22,33 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
+        <!-- Bắt đầu phần hiển thị danh sách sách -->
+        <dt class="col-sm-2">
+            Published Books
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Genre</th>
+                </tr>
+                @if (Model.Books != null)
+                {
+                    @foreach (var item in Model.Books)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Price</td>
+                            <!-- Lưu ý: Genre có thể chưa load được ở đây nếu chưa Include sâu,
+                                 nhưng Title và Price thì chắc chắn hiện -->
+                            <td>@item.GenreID</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </dd>
+        <!-- Kết thúc phần hiển thị danh sách sách -->
     </dl>
 </div>
 <div>
