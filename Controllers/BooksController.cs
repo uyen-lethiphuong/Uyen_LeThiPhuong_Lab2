@@ -60,7 +60,7 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,Author,Price,GenreID")] Book book)
+        public async Task<IActionResult> Create([Bind("ID,Title,AuthorID,Author,Price,GenreID")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Price,GenreID")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,AuthorID, Author,Price,GenreID")] Book book)
         {
             if (id != book.ID)
             {
