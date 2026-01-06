@@ -6,5 +6,6 @@ namespace Uyen_LeThiPhuong_Lab2.Models
         public string? Title { get; set; }
         public decimal Price { get; set; }
         public string? FullName { get; set; }
+        public string Genre { get; set; }
     }
 }

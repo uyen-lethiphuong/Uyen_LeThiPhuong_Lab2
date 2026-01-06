@@ -10,7 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<!-- Form Tìm kiếm -->
+<!-- Form Tìm kiếm (Search) -->
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
@@ -25,25 +25,28 @@
     <thead>
         <tr>
             <th>
-                <!-- Link Sắp xếp theo Title -->
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
-                    @Html.DisplayNameFor(model => model.Title)
+                <!-- Link sắp xếp theo Title (giữ lại từ khóa tìm kiếm nếu có) -->
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-searchString="@ViewData["CurrentFilter"]">
+                    Title
                 </a>
             </th>
             <th>
-                <!-- Author giờ là FullName từ ViewModel -->
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                <!-- Link sắp xếp theo Author (giữ lại từ khóa tìm kiếm nếu có) -->
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]" asp-route-searchString="@ViewData["CurrentFilter"]">
                     Author Name
                 </a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">
-                    @Html.DisplayNameFor(model => model.Price)
-                </a>
+                <!-- Cột Genre (Không cần sắp xếp) -->
+                Genre
             </th>
             <th>
-                <!-- Cột cuối cùng để trống (cho các nút Edit/Details/Delete) -->
+                <!-- Link sắp xếp theo Price (giữ lại từ khóa tìm kiếm nếu có) -->
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParm"]" asp-route-searchString="@ViewData["CurrentFilter"]">
+                    Price
+                </a>
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -55,6 +58,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)

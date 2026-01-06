@@ -30,15 +30,17 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
             // Lưu từ khóa tìm kiếm để hiển thị lại trong textbox
             ViewData["CurrentFilter"] = searchString;
 
-            // LINQ Query: Join bảng Book với Author để lấy tên tác giả
+            // LINQ Query: Join bảng Book với Author và Genre để lấy tên tác giả và tên thể loại
             var books = from b in _context.Book
                         join a in _context.Set<Author>() on b.AuthorID equals a.ID
+                        join g in _context.Set<Genre>() on b.GenreID equals g.ID
                         select new BookViewModel
                         {
                             ID = b.ID,
                             Title = b.Title,
                             Price = b.Price,
-                            FullName = a.FullName // Lấy FullName từ bảng Author
+                            FullName = a.FirstName + " " + a.LastName,  // Lấy FullName từ bảng Author
+                            Genre = g.Name
                         };
 
             // Logic Tìm kiếm
@@ -97,7 +99,7 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
-            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "ID", "ID");
+            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "ID", "Name");
             ViewData["AuthorID"] = new SelectList(_context.Author, "ID", "FullName");
             return View();
         }
@@ -142,7 +144,7 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
             {
                 return NotFound();
             }
-            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "ID", "ID", book.GenreID);
+            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "ID", "Name", book.GenreID);
             ViewData["AuthorID"] = new SelectList(_context.Author, "ID", "FullName", book.AuthorID);
             return View(book);
         }

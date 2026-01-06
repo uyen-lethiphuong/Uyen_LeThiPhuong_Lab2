@@ -34,7 +34,9 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
             }
 
             var author = await _context.Author
-                 .Include(a => a.Books)
+                  .Include(a => a.Books)          // 1. Tải danh sách sách của tác giả
+        .ThenInclude(b => b.Genre)      // 2. Tải tiếp thông tin Genre bên trong mỗi cuốn sách
+    
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (author == null)
             {

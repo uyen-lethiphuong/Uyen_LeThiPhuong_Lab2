@@ -85,8 +85,8 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
             {
                 return NotFound();
             }
-            ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID", order.BookID);
-            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerId", "CustomerId", order.CustomerID);
+            ViewData["BookID"] = new SelectList(_context.Book, "ID", "Title", order.BookID);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerId", "Name", order.CustomerID);
             return View(order);
         }
 
@@ -122,8 +122,8 @@ namespace Uyen_LeThiPhuong_Lab2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID", order.BookID);
-            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerId", "CustomerId", order.CustomerID);
+            ViewData["BookID"] = new SelectList(_context.Book, "ID", "Title", order.BookID);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerId", "Name", order.CustomerID);
             return View(order);
         }
 
